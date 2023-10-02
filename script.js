@@ -17,12 +17,20 @@ async function retrieveData() {
     });
   }
 
+  if (movieNameInput) {
+    movies = movies.filter((movie) => {
+      return movie.Title.toLowerCase().includes(movieNameInput.toLowerCase());
+    });
+  }
+
   const moviedata = document.getElementById("moviedata");
   moviedata.innerHTML = movies
     .map((movie) => {
       return `<tr>
         <td>${movie.Title}</td>
         <td>${movie.Year}</td>
+        <td><img src="${movie.Poster}" alt="${movie.Title} Poster" width="100"></td>
+        
       </tr>`;
     })
     .join("");
